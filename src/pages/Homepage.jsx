@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
+import { motion } from "framer-motion";
 import HomepageImage from "../assets/images/NIC logo2.png";
 import AgriStack from "../assets/images/agri_stack_logo.png";
 import SealOfOdisha from "../assets/images/Seal_of_Odisha.png";
 
 function Homepage() {
+  const [selected, setSelected] = useState("Official");
+
   return (
     <section className="bg-dark-cyan h-[100vh] py-[30px] px-[79px]">
       <div className="top_link  flex">
@@ -13,15 +16,21 @@ function Homepage() {
         <div className="all-link justify-center mt-5 ml-[400px]">
           <ul className="text-white flex gap-10">
             <li className="font-semibold text-lg text-shades-2  transition duration-200 ease-in hover:text-white flex items-center">
-              <a href="/dashboard" className="font-bold">Dashboard</a>
+              <a href="/dashboard" className="font-bold">
+                Dashboard
+              </a>
               <div className="w-1.5 h-1.5 bg-white rounded-full mt-1 ml-10"></div>
             </li>
             <li className="font-semibold text-lg text-shades-2 transition duration-200 ease-in hover:text-white flex items-center">
-              <a href="/checkEnrollmentStatus" className="font-bold">check Enrollment Status</a>
+              <a href="/checkEnrollmentStatus" className="font-bold">
+                check Enrollment Status
+              </a>
               <div className="w-1.5 h-1.5 bg-white rounded-full mt-1 ml-10"></div>
             </li>
             <li className="font-semibold text-lg text-shades-2 transition duration-200 ease-in hover:text-white flex items-center">
-              <a href="/LoginwithCSC" className="font-bold">Login with CSC</a>
+              <a href="/LoginwithCSC" className="font-bold">
+                Login with CSC
+              </a>
             </li>
           </ul>
         </div>
@@ -40,15 +49,51 @@ function Homepage() {
               </div>
 
               <div className="login_Selector flex justify-center mt-[20px]">
-                <h4 className="text-[22px] font-medium  mr-[20px]">Login In as</h4>
-                <ul className="flex border border-black rounded">
-                  <li className="flex items-center px-4 text-sm font-semibold text-white bg-jade rounded cursor-pointer">
-                    <button className="cursor-pointer">Official</button>
-                  </li>
-                  <li className="flex items-center px-4 text-base font-semibold text-jade cursor-pointer">
-                    <button className="cursor-pointer">Framer</button>
-                  </li>
-                </ul>
+                <h4 className="text-[22px] font-medium  mr-[20px]">
+                  Login In as
+                </h4>
+
+                <div className="relative w-[160px] flex rounded-[6px] overflow-hidden">
+
+                  <div className="absolute inset-0 border border-black rounded-[8px]"></div>
+
+                  <motion.div
+                    className="absolute top-0 bottom-0 w-1/2 bg-jade rounded-[6px]"
+                    initial={{ x: 0 }}
+                    animate={{ x: selected === "framer" ? "100%" : "0%" }}
+                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                  />
+
+                  <div
+                    className="flex items-center justify-center w-1/2 cursor-pointer relative z-10 "
+                    onClick={() => setSelected("official")}
+                  >
+                    <p
+                      className={
+                        selected === "official"
+                          ? "text-white text-base "
+                          : "text-jade"
+                      }
+                    >
+                      Official
+                    </p>
+                  </div>
+
+                  <div
+                    className="flex items-center justify-center w-1/2 cursor-pointer relative z-10"
+                    onClick={() => setSelected("framer")}
+                  >
+                    <p
+                      className={
+                        selected === "framer"
+                          ? "text-white text-base"
+                          : "text-jade"
+                      }
+                    >
+                      Framer
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
 
